@@ -25,7 +25,7 @@ const PaymentPage = ({ navigateTo, theme, toggleTheme, isAuthenticated, taskId, 
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/razorpay/create-order", {
+      const response = await fetch("https://jugaadapi.onrender.com/api/razorpay/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: totalAmount * 100, taskId }), // Amount in paise
@@ -45,7 +45,7 @@ const PaymentPage = ({ navigateTo, theme, toggleTheme, isAuthenticated, taskId, 
         order_id: order.id,
         handler: async function (response) {
           try {
-            const verifyResponse = await fetch("http://localhost:5000/api/razorpay/verify-payment", {
+            const verifyResponse = await fetch("https://jugaadapi.onrender.com/api/razorpay/verify-payment", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({

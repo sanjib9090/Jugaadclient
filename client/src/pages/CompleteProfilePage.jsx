@@ -26,7 +26,7 @@ const CompleteProfilePage = ({ navigateTo, theme, toggleTheme, user }) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/membership', {
+      const response = await fetch('https://jugaadapi.onrender.com/membership', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

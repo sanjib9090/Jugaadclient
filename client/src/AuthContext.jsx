@@ -30,7 +30,7 @@ export const AuthProvider = ({ children, navigateTo }) => {
   // ---------- Cookie helpers ----------
   const setSessionCookie = async (idToken) => {
     try {
-      await axios.post('http://localhost:5000/sessionLogin', { idToken }, { withCredentials: true });
+      await axios.post('https://jugaadapi.onrender.com/sessionLogin', { idToken }, { withCredentials: true });
     } catch (err) {
       console.error('Failed to create session cookie:', err?.message || err);
     }
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children, navigateTo }) => {
 
   const clearSessionCookie = async () => {
     try {
-      await axios.post('http://localhost:5000/logout', {}, { withCredentials: true });
+      await axios.post('https://jugaadapi.onrender.com/logout', {}, { withCredentials: true });
     } catch (err) {
       console.error('Failed to clear session cookie:', err?.message || err);
     }
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children, navigateTo }) => {
       formData.append('photo', file);
 
       const response = await axios.post(
-        'http://localhost:5000/api/profile/photo',
+        'https://jugaadapi.onrender.com/api/profile/photo',
         formData,
         {
           withCredentials: true,
@@ -110,7 +110,7 @@ export const AuthProvider = ({ children, navigateTo }) => {
 
         try {
           const [authStatusRes, userDocSnap] = await Promise.all([
-            axios.get('http://localhost:5000/auth-status', { withCredentials: true }),
+            axios.get('https://jugaadapi.onrender.com/auth-status', { withCredentials: true }),
             getDoc(doc(db, 'users', firebaseUser.uid)),
           ]);
 
@@ -120,7 +120,7 @@ export const AuthProvider = ({ children, navigateTo }) => {
           setUser((prev) => ({ ...(prev || basic), ...fromServer, ...fromFirestore }));
 
           try {
-            const membershipRes = await axios.get('http://localhost:5000/membership', { withCredentials: true });
+            const membershipRes = await axios.get('https://jugaadapi.onrender.com/membership', { withCredentials: true });
             if (!hasNavigatedRef.current) {
               if (membershipRes?.data?.isMember) {
                 navigateTo && navigateTo('home');
