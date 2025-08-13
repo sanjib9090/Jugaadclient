@@ -24,7 +24,7 @@ export async function getSocket() {
   connectingPromise = (async () => {
     currentToken = await getFreshIdToken();
 
-    socket = io(import.meta.env.VITE_SOCKET_URL ?? 'https://jugaadapi.onrender.com/', {
+    socket = io(import.meta.env.VITE_SOCKET_URL ?? 'https://jugaadapi.onrender.com', {
       transports: ['websocket'],
       auth: { token: currentToken },
       autoConnect: true,
