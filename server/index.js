@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://jugaadapp.vercel.app'],
     credentials: true,
   })
 );
@@ -142,7 +142,7 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://jugaadapp.vercel.app'],
     credentials: true,
     methods: ['GET', 'POST'],
   },
